@@ -14,11 +14,12 @@
         {{ html()->form('POST', route('jefes.store'))->open() }}
         
         @include('jefes.partials.form')
-        {{html()->submit('Crear')->class('btn btn-primary')}}
+        {{html()->submit('Agregar')->class('btn btn-primary')}}
        
-        {{html()->form()->close()}}
+       
     </div>
     </div>
+    {{html()->form()->close()}}
 @stop
 
 

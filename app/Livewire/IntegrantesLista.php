@@ -2,14 +2,13 @@
 
 namespace App\Livewire;
 
-use App\Models\Boss;
+use App\Models\Integrante;
 use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class ListBosses extends Component
-{
-    use WithPagination;
+class IntegrantesLista extends Component
+{    use WithPagination;
     protected $paginationTheme = 'bootstrap';
     #[Url(as:'busqueda')]
     public $search;
@@ -17,10 +16,9 @@ class ListBosses extends Component
     {
         $this->resetPage();
     }
-
     public function render()
     {
-        $jefes = Boss::where('ci','LIKE','%'.$this->search.'%')->paginate(10);
-        return view('livewire.jefes.list-bosses',compact('jefes'));
+        $integrantes = Integrante::where('ci','Like','%'.$this->search.'%')->paginate(10);
+        return view('livewire.integrantes.integrantes-lista',compact('integrantes'));
     }
 }

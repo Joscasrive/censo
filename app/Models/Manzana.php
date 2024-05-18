@@ -8,8 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Manzana extends Model
 {
     use HasFactory;
-    //relacion uno a uno 
-    public function familia(){
-        return $this->hasOne('App\Models\Familia');
+    //relacion uno a aun inversa
+    public function clap(){
+    return $this->belongsTo('App\Models\Clap');
+    }
+    //relacion uno a muchos 
+    public function familias(){
+        return $this->hasMany('App\Models\Familia');
     }
 }

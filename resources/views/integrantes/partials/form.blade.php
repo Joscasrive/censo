@@ -1,4 +1,3 @@
-
 <div class="row">
     <div class="col-sm  form-group">
         {{html()->label('Nombres','nombres')}}
@@ -42,28 +41,42 @@
         @enderror
     </div>
     <div class=" col-sm form-group">
-        {{html()->label('Edad','edad')}}
-        {{html()->text('edad')->class('form-control')->placeholder('Ingrese la edad')->autocomplete(false)->required()}}
-        @error('edad')
+        {{html()->label('Fecha de Nacimiento','fecha_nacimiento')}}
+        {{html()->date('fecha_nacimiento')->class('form-control')->required()}}
+        @error('fecha_nacimiento')
+        <small class="text-danger">{{$message}}</small>
+        @enderror
+    </div>
+    
+    <div class=" col-sm form-group">
+        {{html()->label('Miembro/Jefe','tipo_persona')}}
+        {{html()->select('tipo_persona',['Miembro'=>'Miembro','Jefe'=>'Jefe'])->class('form-control')->required()}}
+        @error('tipo_persona')
         <small class="text-danger">{{$message}}</small>
         @enderror
     </div>
     <div class=" col-sm form-group">
-        {{html()->label('Sexo','sexo')}}
-        {{html()->select('sexo',  [''=>'Seleccione su sexo','Masculino'=>'Masculino','Femenino'=>'Femenino'])->class('form-control')->required()}}
-        @error('sexo')
-        <small class="text-danger">{{$message}}</small>
-        @enderror
-    </div>
-    <div class=" col-sm form-group">
-        {{html()->label('Mercado','mercado')}}
-        {{html()->text('mercado')->class('form-control')->placeholder('Ingrese el numero de mercado que recibe')}}
-        @error('mercado')
+        {{html()->label('Grupo Familiar','familia_id')}}
+        {{html()->text('familia_id')->placeholder('Ingrese el numero familiar')->required()->class('form-control')}}
+        @error('familia_id')
         <small class="text-danger">{{$message}}</small>
         @enderror
     </div>
 </div>
 <div class="row">
+    <div class=" col-sm form-group">
+        {{html()->label('Sexo','sexo')}}
+        {{html()->select('sexo',  [''=>'Seleccione el sexo','Masculino'=>'Masculino','Femenino'=>'Femenino'])->class('form-control sexo')->required()}}
+        <div class="embarazada" style="display: none">
+        {{html()->label('Embarazada','status')}}
+        <input type="checkbox" name="status" id="status" value="2" @isset($integrante->status)@if($integrante->status =="2") {{'checked'}} @endif @endisset>
+        </div>
+        @error('sexo')
+        <small class="text-danger">{{$message}}</small>
+        @enderror
+    </div>
+    
+
     <div class=" col-sm form-group">
         {{html()->label('Correo','correo')}}
         {{html()->email('correo')->class('form-control')->placeholder('Ingrese el correo electronico')->autocomplete(false)->required()}}
@@ -75,6 +88,16 @@
         {{html()->label('Telefono','telefono')}}
         {{html()->text('telefono')->class('form-control')->placeholder('Ingrese el nro de telefono')->autocomplete(false)->required()}}
         @error('telefono')
+        <small class="text-danger">{{$message}}</small>
+        @enderror
+    </div>
+    
+</div>
+<div class="row">
+    <div class=" col-sm form-group">
+        {{html()->label('Observacion','observacion')}}
+        {{html()->textarea('observacion')->class('form-control')}}
+        @error('observacion')
         <small class="text-danger">{{$message}}</small>
         @enderror
     </div>

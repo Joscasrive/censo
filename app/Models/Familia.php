@@ -14,7 +14,11 @@ class Familia extends Model
     public function boss(){
         return $this->belongsTo('App\Models\Boss');
     }
-    //relacion uno a uno 
+    //relacion uno a muchos
+    public function integrantes(){
+        return $this->hasMany('App\Models\Integrante');
+    }
+    //relacion de uno a muchos inversa
     public function manzana(){
         return $this->belongsTo('App\Models\Manzana');
     }

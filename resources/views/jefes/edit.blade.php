@@ -8,17 +8,19 @@
 @stop
 
 @section('content')
+{{ html()->modelForm( $jefe,'PUT', route('jefes.update',$jefe))->open() }}
 <div class="card">
     <div class="card-body">
-{{ html()->modelForm( $jefe,'PUT', route('jefes.update',$jefe))->open() }}
+
 
 @include('jefes.partials.form')
 
 {{html()->submit('Actualizar')->class('btn btn-primary')}}
 
+
+</div>
+</div>
 {{html()->form()->close()}}
-</div>
-</div>
 @stop
 
 @section('css')

@@ -21,6 +21,7 @@
             <li class="list-group-item">Nombres: {{ $jefe->nombres }}</li>
             <li class="list-group-item">Apellidos: {{ $jefe->apellidos }}</li>
             <li class="list-group-item">Cedula: {{ $jefe->ci }}</li>
+            <li class="list-group-item">Edad: {{ $jefe->edad }}</li>
             <li class="list-group-item">Correo: {{ $jefe->correo }}</li>
             <li class="list-group-item">Teléfono: {{ $jefe->telefono }}</li>
             <li class="list-group-item">Codigo: {{ $jefe->codigo }}</li>

@@ -319,6 +319,25 @@ return [
             
             
         ],
+        ['header' => 'Clap'],
+        [
+            'text' => 'Estructura',
+            'route' => 'claps.index',
+            'icon' => 'fas fa-fw fa-solid fa-users-gear',
+        ],
+        [
+            'text' => 'Datos',
+            'url' => 'admin/settings',
+            'icon' => 'fas fa-fw fa-solid fa-clipboard',
+        ],
+        ['header' => 'Administrador'],
+        [
+            'text' => 'Mazanas',
+            'route' => 'manzanas.index',
+            'icon' => 'far fa-fw fa-solid fa-location-dot',
+            'active'=>['manzanas*'],
+            'label_color' => 'success',
+        ],
         [
             'text' => 'Jefes',
             'route' => 'jefes.index',
@@ -333,17 +352,14 @@ return [
             'active'=>['familias*'],
             'label_color' => 'success',
         ],
-        ['header' => 'Clap'],
         [
-            'text' => 'Estructura',
-            'url' => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
+            'text' => 'Integrantes',
+            'route' => 'integrantes.index',
+            'icon' => 'far fa-fw fa-solid fa-users',
+            'active'=>['integrantes*'],
+            'label_color' => 'success',
         ],
-        [
-            'text' => 'Datos',
-            'url' => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
+       
         ['header' => 'Censos'],
         [
             'text' => 'multilevel',
