@@ -57,7 +57,12 @@
     </div>
     <div class=" col-sm form-group">
         {{html()->label('Grupo Familiar','familia_id')}}
+        @if(isset($integrante))
+        {{html()->text('familia_id',$integrante->familia->nro_familiar)->placeholder('Ingrese el numero familiar')->required()->class('form-control')}}
+        @else
         {{html()->text('familia_id')->placeholder('Ingrese el numero familiar')->required()->class('form-control')}}
+        @endif
+        
         @error('familia_id')
         <small class="text-danger">{{$message}}</small>
         @enderror

@@ -24,4 +24,5 @@ Route::middleware([
     Route::resource('integrantes',IntegranteController::class)->names('integrantes');
     Route::get('manzanas',[ManzanaController::class,'index'])->name('manzanas.index');
     Route::get('claps',[ClapController::class,'index'])->name('claps.index');
+    Route::view('bombonas', 'bombonas.index')->name('bombonas.index');
 });

@@ -13,12 +13,6 @@ abstract class Controller
         $intervalo = $fechaActual->diff($fechaNacimiento);
         $edad = $intervalo->y;
     
-        if ($fechaActual->format('m') < $fechaNacimiento->format('m')) {
-            $edad--;
-        } elseif ($fechaActual->format('m') == $fechaNacimiento->format('m') && $fechaActual->format('d') < $fechaNacimiento->format('d')) {
-            $edad--;
-        }
-    
         return $edad;
     }
 }

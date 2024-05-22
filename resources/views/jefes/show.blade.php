@@ -21,7 +21,8 @@
             <li class="list-group-item">Nombres: {{ $jefe->nombres }}</li>
             <li class="list-group-item">Apellidos: {{ $jefe->apellidos }}</li>
             <li class="list-group-item">Cedula: {{ $jefe->ci }}</li>
-            <li class="list-group-item">Edad: {{ $jefe->edad }}</li>
+            <li class="list-group-item">Fecha de Nacimiento: {{ $jefe->fecha_nacimiento }}</li>
+            <li class="list-group-item">Edad: {{ $edad }} @if($edad <= 1) Año @else Años @endif</li>
             <li class="list-group-item">Correo: {{ $jefe->correo }}</li>
             <li class="list-group-item">Teléfono: {{ $jefe->telefono }}</li>
             <li class="list-group-item">Codigo: {{ $jefe->codigo }}</li>

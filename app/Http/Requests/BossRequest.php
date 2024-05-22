@@ -31,7 +31,8 @@ class BossRequest extends FormRequest
             'sexo'=>'required|in:Masculino,Femenino',
             'codigo'=>'required|max:45',
             'serial'=>'required|max:45',
-            'mercado'=>'numeric'
+            'mercado'=>'numeric',
+            'fecha_nacimiento'=>'date'
         ];
         if($jefe){
             $rules['ci'] = 'required|max:15|unique:bosses,ci,'.$jefe->id;

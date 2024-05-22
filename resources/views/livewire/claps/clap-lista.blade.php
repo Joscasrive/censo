@@ -48,7 +48,7 @@
             
                
                    
-                <button wire:click="$dispatch('deleteClap',{{$clap->id}})"  class="btn btn-danger  m-1"><i class="fa-solid fa-trash"></i></button>
+            <button wire:click="$dispatch('deleteClap',{{$clap->id}})"  class="btn btn-danger  m-1"><i class="fa-solid fa-trash"></i></button>
            
         </td>
            
@@ -67,9 +67,8 @@
     <div class="card-body"><strong>No hay resultados</strong></div>
    @endif
    {{-- Formulario de Creacion --}}
-   <form wire:submit="create()" method="POST" enctype="multipart/form-data">
-    @csrf
-
+   <form wire:submit="create()"  enctype="multipart/form-data">
+ 
   <div wire:ignore.self class="modal fade" id="crearMiembro" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editarfamiliaLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -167,9 +166,8 @@
     </form>
   
 {{-- Formulario de edicion --}}
-<form wire:submit="update()" method="POST" enctype="multipart/form-data">
-  @csrf
-
+<form wire:submit="update()"  enctype="multipart/form-data">
+  
 <div wire:ignore.self class="modal fade" id="editarMiembro" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editarfamiliaLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -220,9 +218,9 @@
           </div>
           <div class="row">
             <div class="col form-group">
-              <label for="resposabilidad">Resposabilidad</label>
+              <label for="resposabilidad">Responsabilidad</label>
              <select class="form-control"  wire:model.live="clapEdit.responsabilidad" required>
-              <option value="">Seleccione Resposabilidad</option>
+              <option value="">Seleccione Responsabilidad</option>
               <option value="UBCH">UBCH</option>
               <option value="FFM">FFM</option>
               <option value="UNAMUJER">UNAMUJER</option>
@@ -245,14 +243,14 @@
           
           </div>
          
-          @isset($clapEdit->img)
+          @isset($clapEdit->imgActual)
           <div class="d-flex justify-content-center">
-            <img src="{{Storage::url($clapEdit->img)}}" alt="Imagen seleccionada" id="img" style="border-radius: 50%; width: 100px; height: 100px;">
+            <img src="@if($clapEdit->img) {{$clapEdit->img->temporaryUrl()}} @else {{Storage::url($clapEdit->imgActual)}} @endif" id="img" style="border-radius: 50%; width: 100px; height: 100px;">
           </div>
           @endisset
         
           <div  class="d-flex justify-content-center align-items-center" >
-            <div wire:loading  wire:target="img"  class="spinner-border" role="status">
+            <div wire:loading  wire:target="clapEdit.img"  class="spinner-border" role="status">
                 <span class="sr-only">Procesando...</span>
             </div>
         </div>

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('apellido');
             $table->string('telefono');
             $table->string('correo')->unique();
-            $table->string('resposabilidad');
+            $table->string('responsabilidad');
             $table->string('img')->nullable();
             $table->timestamps();
         });

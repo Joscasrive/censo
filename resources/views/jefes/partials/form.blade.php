@@ -42,9 +42,9 @@
         @enderror
     </div>
     <div class=" col-sm form-group">
-        {{html()->label('Edad','edad')}}
-        {{html()->text('edad')->class('form-control')->placeholder('Ingrese la edad')->autocomplete(false)->required()}}
-        @error('edad')
+        {{html()->label('Fecha de Nacimiento','fecha_nacimiento')}}
+        {{html()->date('fecha_nacimiento')->class('form-control')->required()}}
+        @error('fecha_nacimiento')
         <small class="text-danger">{{$message}}</small>
         @enderror
     </div>

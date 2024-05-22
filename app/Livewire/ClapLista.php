@@ -42,7 +42,7 @@ class ClapLista extends Component
         $file = $this->img->storeAs('claps', $file);
         $this->img =$file;
        }
-   $clap = Clap::create($this->only(['nombre','apellido','telefono','correo','ci','responsabilidad','img']));
+Clap::create($this->only(['nombre','apellido','telefono','correo','ci','responsabilidad','img']));
     
     $this->reset();
     $this->dispatch('alert','Miembro Agregado');
@@ -74,7 +74,7 @@ public function update(){
     }
     public function render()
     {
-         $claps = Clap::where('ci','Like','%'.$this->search.'%')->paginate(1);
+         $claps = Clap::where('ci','Like','%'.$this->search.'%')->paginate(10);
         return view('livewire.claps.clap-lista',compact('claps'));
     }
 }

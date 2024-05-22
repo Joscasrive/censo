@@ -346,6 +346,13 @@ return [
             'label_color' => 'success',
         ],
         [
+            'text' => 'Bombonas',
+            'route' => 'bombonas.index',
+            'icon' => 'far fa-fw fa-solid fa-fire-flame-curved',
+            'active'=>['bombonas*'],
+            'label_color' => 'success',
+        ],
+        [
             'text' => 'Familias',
             'route' => 'familias.index',
             'icon' => 'far fa-fw fa-solid fa-people-roof',
@@ -359,6 +366,8 @@ return [
             'active'=>['integrantes*'],
             'label_color' => 'success',
         ],
+
+        
        
         ['header' => 'Censos'],
         [

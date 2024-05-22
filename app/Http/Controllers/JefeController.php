@@ -30,8 +30,9 @@ class JefeController extends Controller
     
     public function show(Boss $jefe)
     {
-
-      return view('jefes.show',compact('jefe'));
+ $edad = $jefe->fecha_nacimiento;
+ $edad = $this->calcularEdad($edad);
+      return view('jefes.show',compact('jefe','edad'));
     }
 
     

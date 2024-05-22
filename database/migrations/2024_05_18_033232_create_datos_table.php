@@ -13,6 +13,21 @@ return new class extends Migration
     {
         Schema::create('datos', function (Blueprint $table) {
             $table->id();
+            
+            $table->string('codigo')->nullable();
+            $table->string('nombre');
+            $table->string('municipio');
+            $table->string('parroquia');
+            $table->string('rif');
+            $table->string('clap');
+            $table->string('correo');
+            $table->string('misiones');
+            $table->string('centro');
+            $table->string('norte');
+            $table->string('sur');
+            $table->string('este');
+            $table->string('oeste');
+          
             $table->timestamps();
         });
     }

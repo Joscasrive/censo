@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Manzana extends Model
 {
     use HasFactory;
+    protected $fillable = ['nombre','ubicacion','clap_id'];
     //relacion uno a aun inversa
     public function clap(){
     return $this->belongsTo('App\Models\Clap');

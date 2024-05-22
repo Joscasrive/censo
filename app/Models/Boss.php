@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Boss extends Model
 {
     use HasFactory;
-    protected $fillable = ['nombres','apellidos','ci','correo','edad','sexo','codigo','serial','telefono','mercado'];
+    protected $fillable = ['nombres','apellidos','ci','correo','fecha_nacimiento','sexo','codigo','serial','telefono','mercado'];
 
     //relacion uno a uno 
     public function familia(){

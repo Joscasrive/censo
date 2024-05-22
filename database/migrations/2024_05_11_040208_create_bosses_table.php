@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('apellidos');
             $table->string('correo')->unique();
             $table->string('telefono');
-            $table->unsignedInteger('edad');
+            $table->date('fecha_nacimiento');
             $table->string('codigo');
             $table->string('serial');
             $table->string('sexo');

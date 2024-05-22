@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\IntegranteRequest;
 use App\Models\Boss;
+use App\Models\Familia;
 use App\Models\Integrante;
 use Illuminate\Http\Request;
 
@@ -26,10 +27,13 @@ class IntegranteController extends Controller
     
     public function store(IntegranteRequest $request)
     {
+        $guardar = request()->except('_token');
         if($request->tipo_persona == 'Jefe'){
             $jefe = Boss::where('ci',$request->ci)->first();
          if(isset($jefe)){
-            Integrante::create($request->all());
+            $id_familia = Familia::where('nro_familiar',$request->familia_id)->first();
+             $guardar['familia_id'] = $id_familia->id;
+            Integrante::create($guardar);
             return redirect()->route('integrantes.index')->with('info','Integrante Agregado');
          }else{
             return redirect()->route('integrantes.create')->with('info','El jefe no existe en la base de datos');
@@ -40,7 +44,9 @@ class IntegranteController extends Controller
         if(isset($jefe)){
             return redirect()->route('integrantes.create')->with('info','La cedula ingresada pertenece a un jefe de familia , seleccion la opcion correspodiente para el registro');
           }else{
-             Integrante::create($request->all());
+            $id_familia = Familia::where('nro_familiar',$request->familia_id)->first();
+             $guardar['familia_id'] = $id_familia->id;
+             Integrante::create($guardar);
              return redirect()->route('integrantes.index')->with('info','Integrante Agragado');
           }
     }
@@ -67,10 +73,13 @@ class IntegranteController extends Controller
  
     public function update(IntegranteRequest $request, Integrante $integrante)
     {
+        $guardar = request()->except('_token');
         if($request->tipo_persona == 'Jefe'){
             $jefe = Boss::where('ci',$request->ci)->first();
          if(isset($jefe)){
-           $integrante->update($request->all());
+            $id_familia = Familia::where('nro_familiar',$request->familia_id)->first();
+            $guardar['familia_id'] = $id_familia->id;
+             $integrante->update($guardar);
             return redirect()->route('integrantes.index')->with('info','Dato actualizado');
          }else{
             return redirect()->route('integrantes.edit',$integrante)->with('info','El jefe no existe en la base de datos');
@@ -81,7 +90,9 @@ class IntegranteController extends Controller
         if(isset($jefe)){
             return redirect()->route('integrantes.edit',$integrante)->with('info','La cedula ingresada pertenece a un jefe de familia , seleccion la opcion correspodiente para el registro');
           }else{
-             $integrante->update($request->all());
+            $id_familia = Familia::where('nro_familiar',$request->familia_id)->first();
+            $guardar['familia_id'] = $id_familia->id;
+             $integrante->update($guardar);
              return redirect()->route('integrantes.index')->with('info','Integrante actualizado');
           }
     }
