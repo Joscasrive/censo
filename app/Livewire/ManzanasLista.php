@@ -6,7 +6,6 @@ use App\Livewire\Forms\manzanaEdit;
 use App\Models\Clap;
 use App\Models\Manzana;
 use Livewire\Attributes\On;
-use Livewire\Attributes\Rule;
 use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -14,11 +13,11 @@ use Livewire\WithPagination;
 class ManzanasLista extends Component
 {
     use WithPagination;
-   #[Rule('required|max:45')]
+  
     public $nombre;
-    #[Rule('required|max:250')]
+ 
     public $ubicacion;
-    #[Rule('required|exists:claps,id')]
+   
     public $clap_id;
     protected $paginationTheme = 'bootstrap';
     #[Url(as:'busqueda')]
@@ -26,7 +25,11 @@ class ManzanasLista extends Component
     public manzanaEdit $manzanaEdit;
 
     public function create(){
-        $this->validate();
+        $this->validate([
+            'nombre' => 'required|max:45',
+            'ubicacion' => 'required|max:250',
+            'clap_id' => 'required|exists:claps,id',
+        ]);
         Manzana::create($this->only(['nombre','ubicacion','clap_id']));
         $this->dispatch('alert','Manzana Creada');
     }

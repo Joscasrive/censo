@@ -34,7 +34,7 @@
            
            <td class="d-flex justify-content">
             <a  href="{{route('jefes.show',$jefe)}}" class="btn btn-info m-1"><i class="fa-solid fa-eye"></i></a>
-            <a  href="{{route('jefes.edit',$jefe)}}" class="btn btn-success m-1"><i class="fa-solid fa-pen-to-square"></i></a>
+            <a  href="{{route('jefes.edit',$jefe)}}" class="btn btn-primary m-1"><i class="fa-solid fa-pen-to-square"></i></a>
            
             <form class="form" action="{{route('jefes.destroy',$jefe)}}" method="POST">
                     @csrf

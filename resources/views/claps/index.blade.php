@@ -3,15 +3,13 @@
 @section('title', 'SistemaCF')
 
 @section('content_header')
-<button type="button" class="btn btn-primary float-right" data-bs-toggle="modal" data-bs-target="#crearMiembro">
-    Agregar Miembro
-  </button>
+
     <h1>Lista de Miembros</h1>
 @stop
 
 @section('content')
   
-   @livewire('clap-lista')
+  @livewire('clap-lista')
 @stop
 
 

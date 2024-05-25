@@ -16,37 +16,45 @@ class ClapLista extends Component
 {  
     use WithFileUploads;
     use WithPagination;
-    #[Rule('required|max:45')]
-    public $nombre;
-    #[Rule('required|max:45')]
-    public $apellido; 
-    #[Rule('required|max:15')]
-    public $telefono;
-    #[Rule('required|max:45|unique:claps')]
-    public $correo;
-    #[Rule('required|max:15|unique:claps')]
-    public $ci;
-    #[Rule('required|in:MANZANERO,UBCH,FFM,UNAMUJER,ALIMENTACION,COMUNICADOR,PRODUCTIVO')]
-    public $responsabilidad;
-    #[Rule('nullable|max:1024|mimes:jpg,jpeg,png')]
-    public $img;
+   
     protected $paginationTheme = 'bootstrap';
     #[Url(as:'busqueda')]
     public $search;
     public clapEdit $clapEdit;
     
+    
+    public $nombre;
+    public $apellido; 
+    public $telefono;
+    public $correo;
+    public $ci;
+    public $responsabilidad;
+    public $img;
+    
+    
     public function create(){
-    $this->validate();
+        $this->validate([
+            'nombre' => 'required|max:45',
+            'apellido' => 'required|max:45',
+            'telefono' => 'required|max:15',
+            'correo' => 'required|max:45|unique:claps',
+            'ci' => 'required|max:15|unique:claps',
+            'responsabilidad' => 'required|in:MANZANERO,UBCH,FFM,UNAMUJER,ALIMENTACION,COMUNICADOR,PRODUCTIVO',
+            'img' => 'nullable|max:1024|mimes:jpg,jpeg,png',
+        ]);
+   
+       
     if ($this->img) {
           $file = uniqid(). '.'. $this->img->getClientOriginalExtension();
         $file = $this->img->storeAs('claps', $file);
         $this->img =$file;
        }
-Clap::create($this->only(['nombre','apellido','telefono','correo','ci','responsabilidad','img']));
+        Clap::create($this->only(['nombre','apellido','telefono','correo','ci','responsabilidad','img']));
     
-    $this->reset();
-    $this->dispatch('alert','Miembro Agregado');
+        $this->reset();
+        $this->dispatch('alert','Miembro Agregado');
     }
+
     #[On('delete')]
     public function delete($id){
 
@@ -57,13 +65,16 @@ Clap::create($this->only(['nombre','apellido','telefono','correo','ci','responsa
         $clap->delete();
         
     }
+
     public function edit($id){
         $this->clapEdit->edit($id);
     }
+
 public function update(){
     $this->clapEdit->update();
     $this->dispatch('alert','Dato Actualizado');
 }
+
     public function closeModal(){
         $this->resetValidation();
       
@@ -78,3 +89,4 @@ public function update(){
         return view('livewire.claps.clap-lista',compact('claps'));
     }
 }
+

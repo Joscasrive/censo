@@ -3,7 +3,7 @@
 @section('title', 'SistemaCF')
 
 @section('content_header')
-<a href="{{route('integrantes.create')}}" class="btn btn-primary float-right">Agregar Integrante</a>
+
     <h1>Lista de Integrantes</h1>
 @stop
 

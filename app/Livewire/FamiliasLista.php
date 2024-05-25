@@ -18,7 +18,7 @@ class FamiliasLista extends Component
     public $nro_familiar,$codigo_gas,$manzana_id,$boss_id,$bombona;
     protected $paginationTheme = 'bootstrap';
     
-    #[Url(as:'buscar')]
+    #[Url(as:'busqueda')]
     public $search;
     public familiaEdit $familiaEdit;
     public $familiaId;
@@ -26,10 +26,11 @@ class FamiliasLista extends Component
 
     public function create(){
         $rules = [
-            'nro_familiar' => ['required', 'max:20', 'unique:familias'],
+            'nro_familiar' => ['required', 'unique:familias','numeric'],
             'codigo_gas' => ['required', 'max:20', 'unique:familias'],
             'manzana_id' => ['required','max:45','exists:manzanas,id'],
             'boss_id' => ['required','max:45', 'exists:bosses,ci'],
+            'bombona'=>['required','exists:bombonas,id']
             
         ];
         $messages = [];
@@ -42,7 +43,7 @@ class FamiliasLista extends Component
         $this->validate($rules, $messages, $attributes);
         $jefe = Boss::where('ci', $this->boss_id)->first();
         $this->boss_id = $jefe->id;
-        if (!Familia::where('boss_id',$this->boss_id)) {
+        if (!Familia::where('boss_id',$this->boss_id)->exists()) {
             $familia = Familia::create([
                 'nro_familiar' => $this->nro_familiar,
                 'codigo_gas' => $this->codigo_gas,
@@ -88,7 +89,9 @@ class FamiliasLista extends Component
     {
         $bombonas =Bombona::pluck('tipo','id')->toArray();
         $manzanas = Manzana::pluck('nombre','id')->toArray();
-        $familias = Familia::where('nro_familiar','Like','%'.$this->search.'%')->paginate(10);
+        $familias = Familia::where('nro_familiar','Like','%'.$this->search.'%')
+        ->orWhere('codigo_gas', 'like', '%'. $this->search. '%')
+        ->paginate(10);
        
         return view('livewire.familias.familia-lista',compact('familias','manzanas','bombonas'));
     }

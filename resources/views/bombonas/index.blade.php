@@ -3,9 +3,7 @@
 @section('title', 'SistemaCF')
 
 @section('content_header')
-<button type="button" class="btn btn-primary float-right" data-bs-toggle="modal" data-bs-target="#crearBombona">
-    Agregar Tipo
-  </button>
+
     <h1>Lista de Bombonas</h1>
 @stop
 

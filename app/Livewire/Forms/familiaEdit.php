@@ -27,17 +27,19 @@ class familiaEdit extends Form
     public function update(){
         
             $rules = [
-                'nro_familiar' => ['required', 'max:20', 'unique:familias,nro_familiar,'.$this->familiaId],
+                'nro_familiar' => ['required','numeric', 'unique:familias,nro_familiar,'.$this->familiaId],
                 'codigo_gas' => ['required', 'max:20', 'unique:familias,codigo_gas,'.$this->familiaId],
                 'manzana_id' => ['required', 'max:45', 'exists:manzanas,id'],
-                'boss_id' => ['required', 'max:45', 'exists:bosses,ci']
+                'boss_id' => ['required', 'max:45', 'exists:bosses,ci'],
+                'bombona'=>['required','exists:bombonas,id']
             ];
             $messages = [];
             $attributes = [
                 'nro_familiar' => 'número de familia',
                 'codigo_gas' => 'código de gas',
                 'manzana_id' => 'Manzana',
-                'boss_id' => 'jefe de familia'
+                'boss_id' => 'jefe de familia',
+                'bombona'=>'bombona'
             ];
             $this->validate($rules, $messages, $attributes);
             $jefe = Boss::where('ci', $this->boss_id)->first();

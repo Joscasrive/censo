@@ -1,6 +1,8 @@
 <div class="card">
     <div class="card-header">
-        <input class="form-control" placeholder="Buscar" wire:model.live="search"/>
+      <button type="button" class="btn btn-primary float-letf" data-bs-toggle="modal" data-bs-target="#crearBombona">
+        <i class="fa-solid fa-plus"></i>  Agregar
+      </button>
     </div>
 @if ($bombonas->count())
     
@@ -27,7 +29,7 @@
            
            <td class="d-flex justify-content">
             
-            <a  wire:click ="edit({{$bombona->id}})" data-bs-toggle="modal" data-bs-target="#editarBombona" class="btn btn-success m-1"><i class="fa-solid fa-pen-to-square"></i></a>
+            <a  wire:click ="edit({{$bombona->id}})" data-bs-toggle="modal" data-bs-target="#editarBombona" class="btn btn-primary m-1"><i class="fa-solid fa-pen-to-square"></i></a>
            
            
                  

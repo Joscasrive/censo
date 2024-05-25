@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Http\Requests\IntegranteRequest;
 use App\Models\Boss;
 use App\Models\Familia;
 use App\Models\Integrante;
 use Illuminate\Http\Request;
+
 
 class IntegranteController extends Controller
 {
@@ -106,4 +108,6 @@ class IntegranteController extends Controller
         return redirect()->route('integrantes.index')->with('info','Integrante eliminado');
        
     }
+
+   
 }

@@ -41,7 +41,7 @@
            
             <td class="d-flex justify-content">
            
-           <button wire:click="edit({{$familia->id}})" class="btn btn-success m-1" data-bs-toggle="modal" data-bs-target="#editarfamilia"><i class="fa-solid fa-pen-to-square"></i></button>
+           <button wire:click="edit({{$familia->id}})" class="btn btn-primary m-1" data-bs-toggle="modal" data-bs-target="#editarfamilia"><i class="fa-solid fa-pen-to-square"></i></button>
             
                
                    

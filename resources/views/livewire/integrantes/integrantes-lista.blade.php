@@ -1,5 +1,9 @@
 <div class="card">
-    <div class="card-header">
+    <div class="card-header d-flex justify-start">
+     
+        
+        <a href="{{route('integrantes.create')}}" class="btn btn-primary float-left mr-1"><i class="fa-solid fa-plus"></i></a>
+        <a href="{{route('integrantes.export')}}" class="btn btn-success float-left mr-1"><i class="fa-solid fa-file-excel"></i></a>
         <input class="form-control" placeholder="Buscar" wire:model.live="search"/>
     </div>
 @if ($integrantes->count())
@@ -39,7 +43,7 @@
            
            <td class="d-flex justify-content">
             <a  href="{{route('integrantes.show',$integrante)}}" class="btn btn-info m-1"><i class="fa-solid fa-eye"></i></a>
-            <a  href="{{route('integrantes.edit',$integrante)}}" class="btn btn-success m-1"><i class="fa-solid fa-pen-to-square"></i></a>
+            <a  href="{{route('integrantes.edit',$integrante)}}" class="btn btn-primary m-1"><i class="fa-solid fa-pen-to-square"></i></a>
            
             <form class="form" action="{{route('integrantes.destroy',$integrante)}}" method="POST">
                     @csrf

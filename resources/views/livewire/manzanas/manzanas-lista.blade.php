@@ -29,7 +29,7 @@
            
            <td class="d-flex justify-content">
             
-            <a  wire:click ="edit({{$manzana->id}})" data-bs-toggle="modal" data-bs-target="#editarManzana" class="btn btn-success m-1"><i class="fa-solid fa-pen-to-square"></i></a>
+            <a  wire:click ="edit({{$manzana->id}})" data-bs-toggle="modal" data-bs-target="#editarManzana" class="btn btn-primary m-1"><i class="fa-solid fa-pen-to-square"></i></a>
            
            
                  
@@ -68,14 +68,14 @@
             
               <div class=" form-group">
                 <label for="nombre">Nombre</label>
-               <input type="text" placeholder="Ingrese el nombre" class="form-control"  wire:model.live="nombre" required>
+               <input type="text" placeholder="Ingrese el nombre" class="form-control"  wire:model="nombre" required>
                 @error('nombre')
                 <small class="text-danger">{{$message}}</small>
                 @enderror
             </div>
             <div class=" form-group">
                 <label for="ubicacion">Ubicacion</label>
-               <input type="text" placeholder="Ingrese la ubicacion o sector" class="form-control"  wire:model.live="ubicacion" required>
+               <input type="text" placeholder="Ingrese la ubicacion o sector" class="form-control"  wire:model="ubicacion" required>
                 @error('ubicacion')
                 <small class="text-danger">{{$message}}</small>
                 @enderror

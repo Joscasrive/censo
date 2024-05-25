@@ -1,6 +1,10 @@
+
 <div class="card">
-    <div class="card-header">
-       
+    <div class="card-header d-flex justify-start">
+      <button type="button" class="btn btn-primary float-right mr-1" data-bs-toggle="modal" data-bs-target="#crearMiembro">
+        <i class="fa-solid fa-plus"></i>
+      </button>
+      <a href="{{route('claps.export')}}" class="btn btn-success float-left mr-1"><i class="fa-solid fa-file-excel"></i></a>
         <input class="form-control" placeholder="Buscar" wire:model.live="search"/>
         
     </div>
@@ -44,7 +48,7 @@
            
             <td class="d-flex justify-content">
            
-           <button wire:click="edit({{$clap->id}})" class="btn btn-success m-1" data-bs-toggle="modal" data-bs-target="#editarMiembro"><i class="fa-solid fa-pen-to-square"></i></button>
+           <button wire:click="edit({{$clap->id}})" class="btn btn-primary m-1" data-bs-toggle="modal" data-bs-target="#editarMiembro"><i class="fa-solid fa-pen-to-square"></i></button>
             
                
                    
@@ -67,7 +71,7 @@
     <div class="card-body"><strong>No hay resultados</strong></div>
    @endif
    {{-- Formulario de Creacion --}}
-   <form wire:submit="create()"  enctype="multipart/form-data">
+   <form  wire:submit="create()"  enctype="multipart/form-data">
  
   <div wire:ignore.self class="modal fade" id="crearMiembro" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editarfamiliaLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -78,41 +82,41 @@
         </div>
         <div class="modal-body">
             <div class="row">
-              <div class="col form-group">
-                <label for="nombre">Nombre</label>
-               <input type="text" placeholder="ingrese el nombre" class="form-control" name="nombre" wire:model.live="nombre" required>
-                @error('nombre')
-                <small class="text-danger">{{$message}}</small>
-                @enderror
-            </div>
-            <div class="col form-group">
-                <label for="apellido">Apellido</label>
-               <input type="text" placeholder="ingrese el apellido" class="form-control" name="apellido" wire:model.live="apellido" required>
-                @error('apellido')
-                <small class="text-danger">{{$message}}</small>
-                @enderror
-            </div>
+                <div class="col form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" placeholder="ingrese el nombre" class="form-control"  wire:model="nombre" required>
+                    @error('nombre')
+                    <small class="text-danger">{{$message}}</small>
+                    @enderror
+                </div>
+                <div class="col form-group">
+                    <label for="apellido">Apellido</label>
+                    <input type="text" placeholder="ingrese el apellido" class="form-control"  wire:model="apellido" required>
+                    @error('apellido')
+                    <small class="text-danger">{{$message}}</small>
+                    @enderror
+                </div>
             </div>
            <div class="row">
-            <div class="col form-group">
-              <label for="ci">Cedula</label>
-              <input type="text" class="form-control" wire:model.live="ci" name="ci" placeholder="Ingrese la cedula" required>
-              @error('ci')
-              <small class="text-danger">{{$message}}</small>
-              @enderror
-            </div>
-            <div class="col form-group">
-              <label for="telefono">Telefono</label>
-              <input type="text" class="form-control" wire:model.live="telefono" name="telefono" placeholder="Ingrese su numero de telefono" required>
-              @error('telefono')
-              <small class="text-danger">{{$message}}</small>
-              @enderror
-          </div>
+                <div class="col form-group">
+                    <label for="ci">Cedula</label>
+                    <input type="text" class="form-control" wire:model="ci"  placeholder="Ingrese la cedula" required>
+                    @error('ci')
+                    <small class="text-danger">{{$message}}</small>
+                    @enderror
+                </div>
+                <div class="col form-group">
+                    <label for="telefono">Telefono</label>
+                    <input type="text" class="form-control" wire:model="telefono"  placeholder="Ingrese su numero de telefono" required>
+                    @error('telefono')
+                    <small class="text-danger">{{$message}}</small>
+                    @enderror
+                </div>
            </div>
            
             <div class="form-group">
                 <label for="correo">Correo</label>
-                <input type="email" placeholder="ingrese el correo" class="form-control" name="correo" wire:model.live="correo" required>
+                <input type="email" placeholder="ingrese el correo" class="form-control"  wire:model="correo" required>
                 @error('correo')
                 <small class="text-danger">{{$message}}</small>
                 @enderror
@@ -120,7 +124,7 @@
             <div class="row">
               <div class="col form-group">
                 <label for="resposabilidad">Resposabilidad</label>
-               <select class="form-control" name="responsabilidad" wire:model.live="responsabilidad" required>
+               <select class="form-control"  wire:model="responsabilidad" required>
                 <option value="">Seleccione Resposabilidad</option>
                 <option value="UBCH">UBCH</option>
                 <option value="FFM">FFM</option>
@@ -130,7 +134,7 @@
                 <option value="PRODUCTIVO">PRODUCTIVO</option>
                 <option value="MANZANERO">MANZANERO</option>
                </select>
-                @error('resposabilidad')
+                @error('responsabilidad')
                 <small class="text-danger">{{$message}}</small>
                 @enderror
             </div>
@@ -179,14 +183,14 @@
           <div class="row">
             <div class="col form-group">
               <label for="nombre">Nombre</label>
-             <input type="text" placeholder="ingrese el nombre" class="form-control"  wire:model.live="clapEdit.nombre" required>
+             <input type="text" placeholder="ingrese el nombre" class="form-control"  wire:model="clapEdit.nombre" required>
               @error('clapEdit.nombre')
               <small class="text-danger">{{$message}}</small>
               @enderror
           </div>
           <div class="col form-group">
               <label for="apellido">Apellido</label>
-             <input type="text" placeholder="ingrese el apellido" class="form-control"  wire:model.live="clapEdit.apellido" required>
+             <input type="text" placeholder="ingrese el apellido" class="form-control"  wire:model="clapEdit.apellido" required>
               @error('clapEdit.apellido')
               <small class="text-danger">{{$message}}</small>
               @enderror
@@ -195,14 +199,14 @@
          <div class="row">
           <div class="col form-group">
             <label for="ci">Cedula</label>
-            <input type="text" class="form-control" wire:model.live="clapEdit.ci"  placeholder="Ingrese la cedula" required>
+            <input type="text" class="form-control" wire:model="clapEdit.ci"  placeholder="Ingrese la cedula" required>
             @error('clapEdit.ci')
             <small class="text-danger">{{$message}}</small>
             @enderror
           </div>
           <div class="col form-group">
             <label for="telefono">Telefono</label>
-            <input type="text" class="form-control" wire:model.live="clapEdit.telefono"  placeholder="Ingrese su numero de telefono" required>
+            <input type="text" class="form-control" wire:model="clapEdit.telefono"  placeholder="Ingrese su numero de telefono" required>
             @error('clapEdit.telefono')
             <small class="text-danger">{{$message}}</small>
             @enderror
@@ -211,7 +215,7 @@
          
           <div class="form-group">
               <label for="correo">Correo</label>
-              <input type="email" placeholder="ingrese el correo" class="form-control" wire:model.live="clapEdit.correo" required>
+              <input type="email" placeholder="ingrese el correo" class="form-control" wire:model="clapEdit.correo" required>
               @error('clapEdit.correo')
               <small class="text-danger">{{$message}}</small>
               @enderror
@@ -219,7 +223,7 @@
           <div class="row">
             <div class="col form-group">
               <label for="resposabilidad">Responsabilidad</label>
-             <select class="form-control"  wire:model.live="clapEdit.responsabilidad" required>
+             <select class="form-control"  wire:model="clapEdit.responsabilidad" required>
               <option value="">Seleccione Responsabilidad</option>
               <option value="UBCH">UBCH</option>
               <option value="FFM">FFM</option>

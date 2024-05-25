@@ -11,19 +11,13 @@ use Livewire\Form;
 class clapEdit extends Form
 {
     
-   #[Rule('required|max:45')]
+ 
    public $nombre;
-   #[Rule('required|max:45')]
    public $apellido; 
-   #[Rule('required|max:15')]
    public $telefono;
-   #[Rule('required|max:45|unique:claps')]
    public $correo;
-   #[Rule('required|max:15|unique:claps')]
    public $ci;
-   #[Rule('required|in:MANZANERO,UBCH,FFM,UNAMUJER,ALIMENTACION,COMUNICADOR,PRODUCTIVO')]
    public $responsabilidad;
-   #[Rule('nullable|max:1024|mimes:jpg,jpeg,png')]
    public $img;
    public$imgActual;
     public $id;
@@ -41,7 +35,15 @@ class clapEdit extends Form
 
     }
     public function update(){
-       $this->validate();
+      $this->validate([
+         'nombre' => 'required|max:45',
+         'apellido' => 'required|max:45',
+         'telefono' => 'required|max:15',
+         'correo' => 'required|max:45|unique:claps,correo,'. $this->id,
+         'ci' => 'required|max:15|unique:claps,ci,'. $this->id,
+         'responsabilidad' => 'required|in:MANZANERO,UBCH,FFM,UNAMUJER,ALIMENTACION,COMUNICADOR,PRODUCTIVO',
+         'img' => 'nullable|max:1024|mimes:jpg,jpeg,png'
+     ]);
      $clap = Clap::find($this->id);
      if($this->img){
         if ($clap->img && $this->img != $clap->img) {
@@ -64,7 +66,7 @@ class clapEdit extends Form
         'responsabilidad',
      ]));
      $this->img = false;
-
+     $this->reset();
        
     }
 }
