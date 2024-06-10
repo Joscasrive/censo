@@ -3,6 +3,7 @@
 namespace App\Exports;
 
 use App\Models\Integrante;
+use DateTime;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithHeadings;
@@ -22,12 +23,13 @@ class IntegrantesExport implements FromCollection, ShouldAutoSize, WithHeadings,
                 'apellidos'=> $integrante->apellidos,
                 'sexo' => $integrante->sexo,
                 'fecha_nacimiento' => $integrante->fecha_nacimiento,
+                'edad'=>(new DateTime())->diff(new DateTime($integrante->fecha_nacimiento))->y,
                 'telefono'=>$integrante->telefono,
                 'tipo_persona'=>$integrante->tipo_persona,
                 'correo'=>$integrante->correo,
                 'codigo' => $integrante->codigo,
                 'serial' => $integrante->serial,
-                'status'=>$integrante->status,
+                'status'=>$integrante->status == 2?"Embarazada":"NA",
                 'mercado'=>$integrante->familia->boss->mercado,
                 'nro_integrante_familia'=>Integrante::where('familia_id',$integrante->familia_id)->count(),
                 'observacion' => $integrante->observacion
@@ -45,12 +47,13 @@ class IntegrantesExport implements FromCollection, ShouldAutoSize, WithHeadings,
             'Apellidos',
             'Sexo',
             'Fecha de Nacimiento',
+            'Edad',
             'Teléfono',
             'Tipo de Persona',
             'Correo Electrónico',
             'Código',
             'Serial',
-            'Embarazada=2',
+            'Estado',
             'Mercado',
             'Nro. Integrantes de la Familia',
             'Observación'
@@ -58,9 +61,20 @@ class IntegrantesExport implements FromCollection, ShouldAutoSize, WithHeadings,
     }
     public function styles(Worksheet $sheet)
     {
-        $sheet->getStyle('A1:O1')->applyFromArray([
+        $sheet->getStyle('A1:Q1')->applyFromArray([
             'font' => [
                 'bold' => true,
+            ],
+            'borders' => [
+                'allBorders' => [
+                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                    'color' => ['argb' => '000000'],
+                ],
+            ],
+        ]);
+        $sheet->getStyle('A2:Q'. $sheet->getHighestRow())->applyFromArray([
+            'font' => [
+                'bold' => false,
             ],
             'borders' => [
                 'allBorders' => [

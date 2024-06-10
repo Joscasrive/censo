@@ -16,6 +16,7 @@
             <th>Nro Familiar</th>
             <th>Cod.GasLara</th>
             <th>Tipo de Bombona</th>
+            <th>Bombonas</th>
             <th>Manzana</th>
             <th>Jefe</th>
             <th>Mercado</th>
@@ -29,12 +30,8 @@
             <td>{{$familia->id}}</td>
             <td>{{$familia->nro_familiar}}</td>
             <td>{{$familia->codigo_gas}}</td>
-            <td>
-              @foreach($familia->bombonas->pluck('tipo') as $tipo)
-              ({{$tipo}})
-              @endforeach
-             
-            </td>
+            <td>{{$familia->bombonas->pluck('tipo')->first()}}</td>
+            <td>{{$familia->bombonas->pluck('tipo')->count()}}</td>
             <td>{{$familia->manzana->nombre}}</td>
             <td>{{$familia->boss->nombres}}</td>
             <td>{{$familia->boss->mercado}}</td>
@@ -89,9 +86,10 @@
                 <small class="text-danger">{{$message}}</small>
                 @enderror
             </div>
-            <div class="form-group">
+            <div class="row">
+            <div class="form-group col">
             <select  class="form-control"  wire:model="bombona">
-              <option value="" selected>Seleccione un Tipo de Bombona</option>
+              <option value="" selected>Tipo de Bombona</option>
                 @foreach ($bombonas as $key => $value)
                     <option value="{{$key}}">{{$value}}</option>
                 @endforeach
@@ -100,6 +98,13 @@
             <small class="text-danger">{{$message}}</small>
             @enderror
           </div>
+          <div class="form-group col">
+            <input type="number" placeholder="cantidad de bombonas" class="form-control" wire:model="cantidad">
+            @error('cantidad')
+            <small class="text-danger">{{$message}}</small>
+            @enderror
+        </div>
+      </div>
             <div class="form-group">
                 <label for="boss_id">Jefe de Familia</label>
                 <input type="text" placeholder="Ingrese la cedula del jefe de familia" class="form-control" wire:model="boss_id">
@@ -158,17 +163,26 @@
                 <small class="text-danger">{{$message}}</small>
                 @enderror
             </div>
-            <div class="form-group">
+            <div class="row">
+            <div class="form-group col">
               <select  class="form-control"  wire:model="familiaEdit.bombona">
-                <option value="" selected>Seleccione un Tipo de Bombona</option>
+                <option value="" selected>Tipo de Bombona</option>
                   @foreach ($bombonas as $key => $value)
                       <option value="{{$key}}">{{$value}}</option>
                   @endforeach
+                  
               </select>
               @error('familiaEdit.bombona')
               <small class="text-danger">{{$message}}</small>
               @enderror
             </div>
+            <div class="form-group col">
+              <input type="number" placeholder="cantidad de bombonas" class="form-control" wire:model="familiaEdit.cantidad">
+              @error('familiaEdit.cantidad')
+              <small class="text-danger">{{$message}}</small>
+              @enderror
+          </div>
+        </div>
             <div class="form-group">
                 <label for="boss_id">Cedula Jefe Familiar</label>
                 <input type="text" placeholder="Ingrese la cedula del jefe de familia" class="form-control" wire:model="familiaEdit.boss_id">

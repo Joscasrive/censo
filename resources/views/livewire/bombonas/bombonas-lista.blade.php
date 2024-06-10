@@ -28,12 +28,6 @@
            
            
            <td class="d-flex justify-content">
-            
-            <a  wire:click ="edit({{$bombona->id}})" data-bs-toggle="modal" data-bs-target="#editarBombona" class="btn btn-primary m-1"><i class="fa-solid fa-pen-to-square"></i></a>
-           
-           
-                 
-           
             <button type="submit" wire:click="$dispatch('deleteBombona',{{$bombona->id}})" class="btn btn-danger m-1"><i class="fa-solid fa-trash"></i></button>
             
             </td>
@@ -70,9 +64,10 @@
                 <label for="tipo">Tipo</label>
                <select class="form-control" wire:model="tipo">
                 <option value="">Seleccione el tipo de Bombona</option>
+                <option value="10kg">10Kg</option>
                 <option value="18kg">18Kg</option>
-                <option value="32kg">32Kg</option>
-                <option value="42kg">42Kg</option>
+                <option value="27kg">27Kg</option>
+                <option value="43kg">43Kg</option>
                </select>
                 @error('tipo')
                 <small class="text-danger">{{$message}}</small>
@@ -90,43 +85,7 @@
   </div>
   
     </form>
-    {{-- Formulario de Actualizacion --}}
-   <form wire:submit="update()">
-
-  <div wire:ignore.self class="modal fade" id="editarBombona" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editarfamiliaLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="staticBackdropLabel">Ingrese los Datos</h1>
-          
-        </div>
-        <div class="modal-body">
-            
-             
-          <div class=" form-group">
-            <label for="tipo">Tipo</label>
-           <select class="form-control" wire:model="bombonaEdit.tipo">
-            <option value="">Seleccione el tipo de Bombona</option>
-            <option value="18kg">18Kg</option>
-            <option value="32kg">32Kg</option>
-            <option value="42kg">42Kg</option>
-           </select>
-            @error('bombonaEdit.tipo')
-            <small class="text-danger">{{$message}}</small>
-            @enderror
-        </div>
-           
-            
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger agregar actualizar" data-bs-dismiss="modal" wire:click="closeModal">Cancelar</button>
-          <button type="submit" class="btn btn-primary" >Actualizar</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-    </form>
+    
     @push('js')
     <script>
   Livewire.on('deleteBombona', id=>{
@@ -154,7 +113,7 @@
     });
 
     Livewire.on('alert',function(mensaje){
-      document.querySelector('.actualizar').click();
+      
       document.querySelector('.agregar').click();
   
         Swal.fire({

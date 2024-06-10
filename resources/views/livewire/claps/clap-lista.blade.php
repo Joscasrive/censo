@@ -307,6 +307,14 @@ Livewire.on('deleteClap', id=>{
   });
     
   })
+  Livewire.on('alerta',function(mensaje){
+  
+      Swal.fire({
+    title: "Error!",
+    text: mensaje,
+    icon: "error"
+  });
+})
  
     document.getElementById('imgInput').addEventListener('change', function() {
         var file = this.files[0];

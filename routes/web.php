@@ -22,9 +22,12 @@ Route::middleware([
     Route::resource('jefes',JefeController::class)->names('jefes');
     Route::view('familias', 'familias.index')->name('familias.index');
     Route::resource('integrantes',IntegranteController::class)->names('integrantes');
-    Route::get('integrantes/export',[ExportExel::class,'exportIntegrante'])->name('integrantes.export');
+    Route::get('integrante/export',[ExportExel::class,'exportIntegrante'])->name('integrantes.export');
     Route::view('manzanas', 'manzanas.index')->name('manzanas.index');
+    Route::view('datos', 'datos.index')->name('datos.index');
     Route::view('claps', 'claps.index')->name('claps.index');
-    Route::get('claps/export',[ExportExel::class,'exportClaps'])->name('claps.export');
+    Route::get('clap/export',[ExportExel::class,'exportClaps'])->name('claps.export');
+    Route::get('bombona/export',[ExportExel::class,'exportBombonas'])->name('bombonas.export');
+    Route::get('dato/export',[ExportExel::class,'exportDatos'])->name('datos.export');
     Route::view('bombonas', 'bombonas.index')->name('bombonas.index');
 });

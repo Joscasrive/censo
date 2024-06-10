@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
             $table->string('ubicacion');
-            $table->foreignId('clap_id')->constrained('claps')->onDelete('cascade');
+            $table->foreignId('clap_id')->constrained('claps')->onDelete('set null');
             $table->timestamps();
         });
     }

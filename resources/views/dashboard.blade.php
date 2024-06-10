@@ -3,7 +3,9 @@
 @section('title', 'SistemaCF')
 
 @section('content_header')
-    <h1>Dashboard</h1>
+  <h1></h1>
+  
+    
 @stop
 
 @section('content')
@@ -66,14 +68,40 @@
     
     </div>
     
-    
+    <div id="map" ></div>
 @stop
 
 @section('css')
-    {{-- Add here extra stylesheets --}}
-    {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <style>
+        #map {
+            display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  width: 80vw;
+}
+    </style>
 @stop
 
 @section('js')
 <script src="https://kit.fontawesome.com/7b2e84a63f.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script>
+   const map = L.map('map').setView([9.921579, -69.627259],13);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>',
+      subdomains: ['a', 'b', 'c']
+    }).addTo(map);
+
+
+    // Agregar marcador con icono
+    const marker = L.marker([9.921579, -69.627259], {
+      icon: L.icon({
+        iconUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41]
+      })
+    }).addTo(map);
+  </script>
 @stop

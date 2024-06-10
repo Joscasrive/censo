@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('familias', function (Blueprint $table) {
             $table->id();
             $table->integer('nro_familiar')->unique();
-            $table->string('codigo_gas');
+            $table->string('codigo_gas')->nullable();
             $table->unsignedBigInteger('manzana_id');
-            $table->foreign('manzana_id')->references('id')->on('manzanas')->onDelete('cascade');
+            $table->foreign('manzana_id')->references('id')->on('manzanas')->onDelete('set null');
             $table->unsignedBigInteger('boss_id');
             $table->foreign('boss_id')->references('id')->on('bosses')->onDelete('cascade');
             $table->timestamps();

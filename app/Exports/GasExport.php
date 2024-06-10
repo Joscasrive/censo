@@ -2,48 +2,53 @@
 
 namespace App\Exports;
 
-use App\Models\Clap;
+use App\Models\Boss;
+use App\Models\Integrante;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithStyles;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
-class ClapsExport implements FromCollection, ShouldAutoSize, WithHeadings,WithStyles
+class GasExport implements FromCollection, ShouldAutoSize, WithHeadings,WithStyles
 {
     /**
     * @return \Illuminate\Support\Collection
     */
     public function collection()
     {
-        return Clap::all()->map(function ($clap) {
+        return Boss::all()->map(function ($boss) {
             return [
-                
-                'ci' => $clap->ci,
-                'nombre' => $clap->nombre,
-                'apellido'=> $clap->apellido,
-                'telefono'=>$clap->telefono,
-                'correo'=>$clap->correo,
-                'responsabilidad'=>$clap->responsabilidad,
+                'municipio'=>'Jimenez',
+                'parroquia'=>'Juan Bautista Rodriguez',
+                'jefe de familia'=>$boss->nombres." ".$boss->apellidos,
+                'ci' => $boss->ci,
+                'telefono'=>$boss->telefono,
+                'miembros'=>Integrante::where('familia_id',$boss->familia->id)->count(),
+                'bombona_id'=>$boss->familia->bombonas->pluck('tipo')->first(),
+                'cantidad'=>$boss->familia->bombonas->pluck('id')->count()
+               
                 
             ];
         });
     }
-
     public function headings(): array
     {
         return [
+            'Municipio',
+            'Parroquia',
+            'Jefe de Familia',
             'Ci',
-            'Nombre',
-            'Apellido',
-            'Teléfono',
-            'Correo Electrónico',
-            'Responsabilidad'
+            'Telefono',
+            'Miembros',
+            'Tipo de Bombona',
+            'Cantidad de Bombonas'
+           
         ];
     }
     public function styles(Worksheet $sheet)
     {
-        $sheet->getStyle('A1:F1')->applyFromArray([
+        $sheet->getStyle('A1:H1')->applyFromArray([
             'font' => [
                 'bold' => true,
             ],
@@ -54,7 +59,7 @@ class ClapsExport implements FromCollection, ShouldAutoSize, WithHeadings,WithSt
                 ],
             ],
         ]);
-        $sheet->getStyle('A2:F'. $sheet->getHighestRow())->applyFromArray([
+        $sheet->getStyle('A2:H'. $sheet->getHighestRow())->applyFromArray([
             'font' => [
                 'bold' => false,
             ],

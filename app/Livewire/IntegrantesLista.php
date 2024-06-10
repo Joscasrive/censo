@@ -18,7 +18,7 @@ class IntegrantesLista extends Component
     }
     public function render()
     {
-        $integrantes = Integrante::where('ci','Like','%'.$this->search.'%')->paginate(10);
+        $integrantes = Integrante::where('ci','Like','%'.$this->search.'%')->orWhere('correo','Like','%'.$this->search.'%')->paginate(10);
         return view('livewire.integrantes.integrantes-lista',compact('integrantes'));
     }
 }

@@ -7,6 +7,7 @@ use App\Models\Bombona;
 use App\Models\Boss;
 use App\Models\Familia;
 use App\Models\Manzana;
+use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Url;
 use Livewire\Component;
@@ -15,7 +16,7 @@ use Livewire\WithPagination;
 class FamiliasLista extends Component
 {
     use WithPagination;
-    public $nro_familiar,$codigo_gas,$manzana_id,$boss_id,$bombona;
+    public $nro_familiar,$codigo_gas,$manzana_id,$boss_id,$bombona,$cantidad;
     protected $paginationTheme = 'bootstrap';
     
     #[Url(as:'busqueda')]
@@ -27,10 +28,11 @@ class FamiliasLista extends Component
     public function create(){
         $rules = [
             'nro_familiar' => ['required', 'unique:familias','numeric'],
-            'codigo_gas' => ['required', 'max:20', 'unique:familias'],
+            'codigo_gas' => ['max:20', 'unique:familias'],
             'manzana_id' => ['required','max:45','exists:manzanas,id'],
             'boss_id' => ['required','max:45', 'exists:bosses,ci'],
-            'bombona'=>['required','exists:bombonas,id']
+            'bombona'=>['nullable','exists:bombonas,id'],
+            'cantidad'=>['numeric']
             
         ];
         $messages = [];
@@ -50,7 +52,15 @@ class FamiliasLista extends Component
                 'manzana_id' => $this->manzana_id,
                 'boss_id' => $this->boss_id
             ]);
-            $familia->bombonas()->attach($this->bombona);
+            $datos = [];
+            for ($i = 0; $i < $this->cantidad; $i++) {
+                $datos[] = [
+                    'familia_id' => $familia->id,
+                    'bombona_id' => $this->bombona,
+                ];
+            }
+            
+            DB::table('bombona_familia')->insert($datos);
     
             $this->reset();
             $this->dispatch('alert', 'Grupo Familiar Creado'); 

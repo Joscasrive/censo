@@ -55,7 +55,7 @@ class ManzanasLista extends Component
     }
     public function render()
     {
-        $manzanas = Manzana::paginate();
+        $manzanas = Manzana::where('nombre','Like','%'.$this->search.'%')->paginate(10);
         $responsables = Clap::where('responsabilidad','MANZANERO')->get();
         return view('livewire.manzanas.manzanas-lista',compact('manzanas','responsables'));
     }

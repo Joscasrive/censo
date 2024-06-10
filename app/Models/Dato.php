@@ -7,5 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Dato extends Model
 {
+    protected $guarded = ['id','create_at','update_at'];
     use HasFactory;
 }

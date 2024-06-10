@@ -2,48 +2,61 @@
 
 namespace App\Exports;
 
-use App\Models\Clap;
+use App\Models\Dato;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithStyles;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
-class ClapsExport implements FromCollection, ShouldAutoSize, WithHeadings,WithStyles
+class DatoExport implements FromCollection, ShouldAutoSize, WithHeadings,WithStyles
 {
     /**
     * @return \Illuminate\Support\Collection
     */
     public function collection()
     {
-        return Clap::all()->map(function ($clap) {
+        return Dato::all()->map(function($dato){
             return [
+                'codigo' => $dato->codigo,
+                'nombre' => $dato->nombre,
+                'municipio' => $dato->municipio,
+                'parroquia' => $dato->parroquia,
+                'rif' => $dato->rif,
+                'clap' => $dato->clap,
+                'correo' => $dato->correo,
+                'misiones' => $dato->misiones,
+                'centro' => $dato->centro,
+                'norte' => $dato->norte,
+                'sur' => $dato->sur,
+                'este' => $dato->este,
+                'oeste' => $dato->oeste,
                 
-                'ci' => $clap->ci,
-                'nombre' => $clap->nombre,
-                'apellido'=> $clap->apellido,
-                'telefono'=>$clap->telefono,
-                'correo'=>$clap->correo,
-                'responsabilidad'=>$clap->responsabilidad,
-                
-            ];
+                ];
         });
     }
 
     public function headings(): array
     {
         return [
-            'Ci',
+            'Codigo',
             'Nombre',
-            'Apellido',
-            'Teléfono',
-            'Correo Electrónico',
-            'Responsabilidad'
-        ];
+            'Municipio',
+            'Parroquia',
+            'Rif',
+            'Clap',
+            'Correo',
+            'Misiones',
+            'Centro',
+            'Norte',
+            'Sur',
+            'Este',
+            'Oeste'];
+           
     }
     public function styles(Worksheet $sheet)
     {
-        $sheet->getStyle('A1:F1')->applyFromArray([
+        $sheet->getStyle('A1:M1')->applyFromArray([
             'font' => [
                 'bold' => true,
             ],
@@ -54,7 +67,7 @@ class ClapsExport implements FromCollection, ShouldAutoSize, WithHeadings,WithSt
                 ],
             ],
         ]);
-        $sheet->getStyle('A2:F'. $sheet->getHighestRow())->applyFromArray([
+        $sheet->getStyle('A2:M'. $sheet->getHighestRow())->applyFromArray([
             'font' => [
                 'bold' => false,
             ],

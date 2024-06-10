@@ -49,10 +49,18 @@ class ClapLista extends Component
         $file = $this->img->storeAs('claps', $file);
         $this->img =$file;
        }
+       if (Clap::where('responsabilidad', $this->responsabilidad)
+    ->whereNotIn('responsabilidad', ['Manzanero']) // exclude Manzaneros
+    ->exists()) {
+        $this->dispatch('alerta','El cargo seleccionado ya esta asiganado');
+       }else{
         Clap::create($this->only(['nombre','apellido','telefono','correo','ci','responsabilidad','img']));
-    
         $this->reset();
         $this->dispatch('alert','Miembro Agregado');
+       }
+       
+    
+       
     }
 
     #[On('delete')]
@@ -85,7 +93,7 @@ public function update(){
     }
     public function render()
     {
-         $claps = Clap::where('ci','Like','%'.$this->search.'%')->paginate(10);
+         $claps = Clap::where('ci','Like','%'.$this->search.'%')->orWhere('correo','Like','%'.$this->search.'%')->paginate(10);
         return view('livewire.claps.clap-lista',compact('claps'));
     }
 }

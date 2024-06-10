@@ -16,14 +16,14 @@
 </div>
 <div class="row">
     <div class=" col-sm form-group">
-        {{html()->label('Codigo','codigo')}}
+        {{html()->label('Codigo Patria','codigo')}}
         {{html()->text('codigo')->class('form-control')->placeholder('Ingrese el codigo del carnet')->autocomplete(false)->required()}}
         @error('codigo')
         <small class="text-danger">{{$message}}</small>
         @enderror
     </div>
     <div class=" col-sm form-group">
-        {{html()->label('Serial','serial')}}
+        {{html()->label('Serial Patria','serial')}}
         {{html()->text('serial')->class('form-control')->placeholder('Ingrese el serial del carnet')->autocomplete(false)->required()}}
         @error('serial')
         <small class="text-danger">{{$message}}</small>
