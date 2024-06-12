@@ -15,65 +15,104 @@
           <div class="form-group">
               <label for="nombre" class="col-form-label">Codigo</label>
               <input type="text"  class="form-control" wire:model="codigo">
+              @error('codigo')
+              <small class="text-danger">{{$message}}</small>
+              @enderror
             </div>
           <div class="form-group row">
             <div class="col-md-6">
               <label for="nombre" class="col-form-label">Nombre</label>
               <input type="text" id="nombre" class="form-control" wire:model="nombre">
+                @error('nombre')
+              <small class="text-danger">{{$message}}</small>
+              @enderror
             </div>
             <div class="col-md-6">
               <label for="municipio" class="col-form-label">Municipio</label>
               <input type="text" id="municipio" class="form-control" wire:model="municipio">
+                 @error('municipio')
+              <small class="text-danger">{{$message}}</small>
+              @enderror
             </div>
           </div>
           <div class="form-group row">
             <div class="col-md-6">
               <label for="parroquia" class="col-form-label">Parroquia</label>
               <input type="text" id="parroquia" class="form-control" wire:model="parroquia">
+              @error('parroquia')
+              <small class="text-danger">{{$message}}</small>
+              @enderror
             </div>
             <div class="col-md-6">
               <label for="rif" class="col-form-label">RIF</label>
               <input type="text" id="rif" class="form-control" wire:model="rif">
+              @error('rif')
+              <small class="text-danger">{{$message}}</small>
+              @enderror
             </div>
           </div>
           <div class="form-group row">
             <div class="col-md-6">
               <label for="clap" class="col-form-label">CLAP</label>
               <input type="text" id="clap" class="form-control" wire:model="clap">
+              @error('CLAP')
+              <small class="text-danger">{{$message}}</small>
+              @enderror
             </div>
             <div class="col-md-6">
               <label for="correo" class="col-form-label">Correo</label>
               <input type="email" id="correo" class="form-control" wire:model="correo">
+              @error('correo')
+              <small class="text-danger">{{$message}}</small>
+              @enderror
             </div>
           </div>
           <div class="form-group row">
             <div class="col-md-6">
               <label for="misiones" class="col-form-label">Misiones</label>
               <input type="text" id="misiones" class="form-control" wire:model="misiones">
+              @error('misiones')
+              <small class="text-danger">{{$message}}</small>
+              @enderror
             </div>
             <div class="col-md-6">
               <label for="centro" class="col-form-label">Centro Comunal</label>
               <input type="text" id="centro" class="form-control" wire:model="centro">
+              @error('centro')
+              <small class="text-danger">{{$message}}</small>
+                @enderror
             </div>
           </div>
           <div class="form-group row">
             <div class="col-md-6">
               <label for="norte" class="col-form-label">Comunidad Norte</label>
               <input type="text" id="norte" class="form-control" wire:model="norte">
+              @error('norte')
+              <small class="text-danger">{{$message}}</small>
+              @enderror
             </div>
             <div class="col-md-6">
               <label for="sur" class="col-form-label">Comunidad Sur</label>
               <input type="text" id="sur" class="form-control" wire:model="sur">
+              @error('sur')
+              <small class="text-danger">{{$message}}</small>
+              @enderror
             </div>
           </div>
           <div class="form-group row">
             <div class="col-md-6">
               <label for="este" class="col-form-label">Comunidad Este</label>
               <input type="text" id="este" class="form-control" wire:model="este">
+              @error('este')
+              <small class="text-danger">{{$message}}</small>
+              @enderror
             </div>
             <div class="col-md-6">
               <label for="oeste" class="col-form-label">Comunidad Oeste</label>
               <input type="text" id="oeste" class="form-control" wire:model="oeste">
+              @error('oeste')
+              <small class="text-danger">{{$message}}</small>
+              @enderror
             </div>
           </div>
         
