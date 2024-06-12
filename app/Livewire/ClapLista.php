@@ -50,7 +50,7 @@ class ClapLista extends Component
         $this->img =$file;
        }
        if (Clap::where('responsabilidad', $this->responsabilidad)
-    ->whereNotIn('responsabilidad', ['Manzanero']) // exclude Manzaneros
+    ->whereNotIn('responsabilidad', ['Manzanero']) 
     ->exists()) {
         $this->dispatch('alerta','El cargo seleccionado ya esta asiganado');
        }else{

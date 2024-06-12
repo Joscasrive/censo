@@ -3,9 +3,12 @@
 @section('title', 'SistemaCF')
 
 @section('content_header')
+@can('modificacion')
 <button type="button" class="btn btn-primary float-right" data-bs-toggle="modal" data-bs-target="#crearfamilia">
-    Agregar Familia
-  </button>
+  Agregar Familia
+</button>
+@endcan
+
     <h1>Lista de Jefes</h1>
 @stop
 

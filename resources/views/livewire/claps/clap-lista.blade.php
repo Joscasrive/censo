@@ -1,13 +1,19 @@
 
 <div class="card">
+  
+      
+  
     <div class="card-header d-flex justify-start">
+      @can('modificacion')
       <button type="button" class="btn btn-primary float-right mr-1" data-bs-toggle="modal" data-bs-target="#crearMiembro">
         <i class="fa-solid fa-plus"></i>
       </button>
+      @endcan
       <a href="{{route('claps.export')}}" class="btn btn-success float-left mr-1"><i class="fa-solid fa-file-excel"></i></a>
         <input class="form-control" placeholder="Buscar" wire:model.live="search"/>
         
     </div>
+   
 @if ( $claps->count())
     
 
@@ -28,9 +34,10 @@
             
         </tr>
     </thead>
+    <tbody >
     @foreach ($claps as $clap)
-        <tbody wire:key="clap--{{$clap->id}}">
-           
+        
+           <tr wire:key="{{$clap->id}}">
             <td>{{$clap->id}}</td>
             <td>{{$clap->ci}}</td>
             <td>{{$clap->nombre}}</td>
@@ -45,20 +52,24 @@
             
             @endif
            
-           
+            @can('modificacion')
+                  
             <td class="d-flex justify-content">
+       
+          
            
            <button wire:click="edit({{$clap->id}})" class="btn btn-primary m-1" data-bs-toggle="modal" data-bs-target="#editarMiembro"><i class="fa-solid fa-pen-to-square"></i></button>
             
                
                    
             <button wire:click="$dispatch('deleteClap',{{$clap->id}})"  class="btn btn-danger  m-1"><i class="fa-solid fa-trash"></i></button>
-           
+        
         </td>
+        @endcan
            
-        </tbody>
+      </tr>
         @endforeach
-       
+      </tbody>
     
  </table>
 </div>

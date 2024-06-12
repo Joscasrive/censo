@@ -1,9 +1,13 @@
-<div class="card">
+<div class="card"> 
+  @can('modificacion') 
     <div class="card-header">
+     
       <button type="button" class="btn btn-primary float-letf" data-bs-toggle="modal" data-bs-target="#crearBombona">
         <i class="fa-solid fa-plus"></i>  Agregar
       </button>
+    
     </div>
+    @endcan
 @if ($bombonas->count())
     
 
@@ -20,22 +24,28 @@
             
         </tr>
     </thead>
+    <tbody>
     @foreach ($bombonas as $bombona)
-        <tbody wire:key="manzana--{{$bombona->id}}" >
-           
+        
+           <tr  wire:key="manzana--{{$bombona->id}}">
             <td>{{$bombona->id}}</td>
             <td>{{$bombona->tipo}}</td>
            
+          
+            @can('modificacion') 
            
            <td class="d-flex justify-content">
-            <button type="submit" wire:click="$dispatch('deleteBombona',{{$bombona->id}})" class="btn btn-danger m-1"><i class="fa-solid fa-trash"></i></button>
-            
-            </td>
-
            
-        </tbody>
-        @endforeach
+            <button type="submit" wire:click="$dispatch('deleteBombona',{{$bombona->id}})" class="btn btn-danger m-1"><i class="fa-solid fa-trash"></i></button>
+          
+            </td>
+            @endcan
+           </tr>
+            
+           
        
+        @endforeach
+      </tbody>
     
  </table>
 </div>

@@ -18,15 +18,18 @@
           
             
         </tr>
-    </thead>
+    </thead>  
+    <tbody  >
     @foreach ($manzanas as $manzana)
-        <tbody wire:key="manzana--{{$manzana->id}}" >
-           
+      
+           <tr wire:key="{{$manzana->id}}">
             <td>{{$manzana->id}}</td>
             <td>{{$manzana->nombre}}</td>
             <td>{{$manzana->ubicacion}}</td>
             <td>{{$manzana->clap->nombre}}</td>
-           
+           @can('modificacion')
+               
+        
            <td class="d-flex justify-content">
             
             <a  wire:click ="edit({{$manzana->id}})" data-bs-toggle="modal" data-bs-target="#editarManzana" class="btn btn-primary m-1"><i class="fa-solid fa-pen-to-square"></i></a>
@@ -37,17 +40,17 @@
                 <button type="submit" wire:click="$dispatch('deleteManzana',{{$manzana->id}})" class="btn btn-danger m-1"><i class="fa-solid fa-trash"></i></button>
             
             </td>
-
-           
-        </tbody>
-        @endforeach
+            @endcan
+           </tr>
        
+        @endforeach
+        </tbody>
     
  </table>
 </div>
     </div>
     <div class="card-footer">
-        {{$manzanas->links()}}
+        {{$manzanas->links(data: ['scrollTo' => false])}}
     </div>
     @else
 

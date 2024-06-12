@@ -24,9 +24,10 @@
             
         </tr>
     </thead>
+     <tbody >
     @foreach ($familias as $familia)
-        <tbody wire:key="familia--{{$familia->id}}">
-           
+       
+           <tr wire:key="{{$familia->id}}">
             <td>{{$familia->id}}</td>
             <td>{{$familia->nro_familiar}}</td>
             <td>{{$familia->codigo_gas}}</td>
@@ -35,7 +36,7 @@
             <td>{{$familia->manzana->nombre}}</td>
             <td>{{$familia->boss->nombres}}</td>
             <td>{{$familia->boss->mercado}}</td>
-           
+            @can('modificacion')
             <td class="d-flex justify-content">
            
            <button wire:click="edit({{$familia->id}})" class="btn btn-primary m-1" data-bs-toggle="modal" data-bs-target="#editarfamilia"><i class="fa-solid fa-pen-to-square"></i></button>
@@ -45,16 +46,17 @@
             <button wire:click="$dispatch('deleteFamilia',{{$familia->id}})"  class="btn btn-danger  m-1"><i class="fa-solid fa-trash"></i></button>
            
         </td>
+        @endcan
            
-        </tbody>
+       </tr>
         @endforeach
-       
+        </tbody>
     
  </table>
 </div>
     </div>
     <div class="card-footer">
-        {{$familias->links()}}
+        {{$familias->links(data: ['scrollTo' => false])}}
     </div>
     @else
 

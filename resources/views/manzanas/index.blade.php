@@ -3,9 +3,13 @@
 @section('title', 'SistemaCF')
 
 @section('content_header')
+@can('modificacion')
+    
+
 <button type="button" class="btn btn-primary float-right" data-bs-toggle="modal" data-bs-target="#crearManzana">
     Crear Manzana
   </button>
+  @endcan
     <h1>Lista de Manzanas</h1>
 @stop
 

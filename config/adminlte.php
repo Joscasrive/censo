@@ -137,7 +137,7 @@ return [
     'usermenu_header' => true,
     'usermenu_header_class' => 'bg-primary',
     'usermenu_image' => true,
-    'usermenu_desc' => false,
+    'usermenu_desc' => true,
     'usermenu_profile_url' => true,
 
     /*
@@ -154,7 +154,7 @@ return [
 
     'layout_topnav' => null,
     'layout_boxed' => null,
-    'layout_fixed_sidebar' => null,
+    'layout_fixed_sidebar' => true,
     'layout_fixed_navbar' => null,
     'layout_fixed_footer' => null,
     'layout_dark_mode' => null,
@@ -196,7 +196,7 @@ return [
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-dark-primary elevation-4',
+    'classes_sidebar' => 'sidebar-dark-danger elevation-4',
     'classes_sidebar_nav' => '',
     'classes_topnav' => 'navbar-white navbar-light',
     'classes_topnav_nav' => 'navbar-expand',
@@ -316,27 +316,37 @@ return [
             'text' => 'Panel Principal',
             'route' => 'dashboard',
             'icon' => 'fas fa-tachometer-alt fa-fw',
+           
             
             
         ],
-        ['header' => 'Clap'],
         [
-            'text' => 'Estructura',
+            'text' => 'Roles',
+            'route' => 'admin.index',
+            'icon' => 'fas fa-fw fa-solid fa-users-gear',
+            'can' => 'modificacion',
+        ],
+        ['header' => 'Estructura'],
+        [
+            'text' => 'Responsables',
             'route' => 'claps.index',
             'icon' => 'fas fa-fw fa-solid fa-users-gear',
+            'can' => 'dashboard',
         ],
         [
             'text' => 'Datos',
             'route' => 'datos.index',
             'icon' => 'fas fa-fw fa-solid fa-clipboard',
+            'can' => 'datos',
         ],
-        ['header' => 'Administrador'],
+        ['header' => 'Comunidad'],
         [
             'text' => 'Mazanas',
             'route' => 'manzanas.index',
             'icon' => 'far fa-fw fa-solid fa-location-dot',
             'active'=>['manzanas*'],
             'label_color' => 'success',
+            'can' => 'dashboard',
         ],
         [
             'text' => 'Jefes',
@@ -344,6 +354,7 @@ return [
             'icon' => 'far fa-fw fa-solid fa-user-tie',
             'active'=>['jefes*'],
             'label_color' => 'success',
+            'can' => 'dashboard',
         ],
         [
             'text' => 'Bombonas',
@@ -351,6 +362,7 @@ return [
             'icon' => 'far fa-fw fa-solid fa-fire-flame-curved',
             'active'=>['bombonas*'],
             'label_color' => 'success',
+            'can' => 'dashboard',
         ],
         [
             'text' => 'Familias',
@@ -358,6 +370,7 @@ return [
             'icon' => 'far fa-fw fa-solid fa-people-roof',
             'active'=>['familias*'],
             'label_color' => 'success',
+            'can' => 'dashboard',
         ],
         [
             'text' => 'Integrantes',
@@ -365,6 +378,7 @@ return [
             'icon' => 'far fa-fw fa-solid fa-users',
             'active'=>['integrantes*'],
             'label_color' => 'success',
+            'can' => 'dashboard',
         ],
 
         
@@ -376,12 +390,14 @@ return [
             'route' => 'bombonas.export',
             'icon' => 'far fa-fw fa-solid fa-table-list',
             'label_color' => 'success',
+            'can' => 'reportes',
         ],
         [
             'text' => 'Consejo Comunal',
             'route' => 'datos.export',
             'icon' => 'far fa-fw fa-solid fa-table-list',
             'label_color' => 'success',
+            'can' => 'reportes',
         ],
     ],
 

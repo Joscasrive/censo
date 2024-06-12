@@ -97,13 +97,12 @@
  
 @if(!isset($datos))
 
-<!-- Button trigger modal -->
+@can('modificacion')
 <button type="button" class="btn btn-primary  float-right" data-toggle="modal" data-target="#exampleModal">
-   Agregar Datos
-  </button>
-  
- 
-  
+  Agregar Datos
+ </button>
+@endcan
+
       
   @else
       
@@ -180,10 +179,14 @@
                             </div>
                            
                         </div>
+                        @can('modificacion')
+                            
+                        
                         <div class="form-group">
                           <a class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Editar</a>
                           <button class="btn btn-danger" wire:click="$dispatch('deleteDato',{{$datos->id}})">Eliminar</button>
-                      </div>
+                        </div>
+                        @endcan
                       
                     </div>
                 </div>
