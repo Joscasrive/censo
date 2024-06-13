@@ -49,7 +49,7 @@ class IntegranteController extends Controller
             $id_familia = Familia::where('nro_familiar',$request->familia_id)->first();
              $guardar['familia_id'] = $id_familia->id;
              Integrante::create($guardar);
-             return redirect()->route('integrantes.index')->with('info','Integrante Agragado');
+             return redirect()->route('integrantes.index')->with('info','Integrante Agregado');
           }
     }
         

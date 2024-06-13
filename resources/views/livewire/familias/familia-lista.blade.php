@@ -13,7 +13,7 @@
     <thead>
         <tr>
             <th>#</th>
-            <th>Nro Familiar</th>
+            <th>Nro de Familia</th>
             <th>Cod.GasLara</th>
             <th>Tipo de Bombona</th>
             <th>Bombonas</th>
@@ -75,7 +75,7 @@
         <div class="modal-body">
             
             <div class="form-group">
-                <label for="nro_familiar">Nro familiar</label>
+                <label for="nro_familiar">Nro de familia</label>
                <input type="text" placeholder="ingrese el nro familiar" class="form-control"  wire:model="nro_familiar">
                 @error('nro_familiar')
                 <small class="text-danger">{{$message}}</small>
@@ -152,7 +152,7 @@
         <div class="modal-body">
             
             <div class="form-group">
-                <label for="nro_familiar">Nro familiar</label>
+                <label for="nro_familiar">Nro de familia</label>
                <input type="text" placeholder="ingrese el nro familiar" class="form-control"  wire:model="familiaEdit.nro_familiar">
                 @error('familiaEdit.nro_familiar')
                 <small class="text-danger">{{$message}}</small>

@@ -2,7 +2,7 @@
 @section('title', 'Administrator')
 
 @section('content_header')
-    <h1>Assign Role</h1>
+    <h1>Asignar Rol</h1>
 @stop
 
 @section('content')
@@ -22,7 +22,7 @@
         </div>
             
         @endforeach
-        {{html()->submit('Assign role')->class('btn btn-primary')}}
+        {{html()->submit('Asignar')->class('btn btn-primary')}}
         {{html()->form()->open()}}
     </div>
 </div>

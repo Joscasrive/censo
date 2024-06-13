@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Exports;
-
+use App\Models\Clap;
+use App\Models\Familia;
 use App\Models\Dato;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
@@ -16,6 +17,8 @@ class DatoExport implements FromCollection, ShouldAutoSize, WithHeadings,WithSty
     */
     public function collection()
     {
+        $jefe=Clap::where('responsabilidad','UBCH')->first();
+        
         return Dato::all()->map(function($dato){
             return [
                 'codigo' => $dato->codigo,
@@ -25,12 +28,18 @@ class DatoExport implements FromCollection, ShouldAutoSize, WithHeadings,WithSty
                 'rif' => $dato->rif,
                 'clap' => $dato->clap,
                 'correo' => $dato->correo,
+                'Familia'=>Familia::count(),
+                'Manzanero'=>Clap::where('responsabilidad','MANZANERO')->count(),
                 'misiones' => $dato->misiones,
                 'centro' => $dato->centro,
-                'norte' => $dato->norte,
+                'UBCH'=>isset($jefe)?$jefe->nombre.' '.$jefe->apellido:'NA',
+                'cedula'=>isset($jefe)?$jefe->ci.' '.$jefe->apellido:'NA',
+                'telefono'=>isset($jefe)?$jefe->telefono.' '.$jefe->apellido:'NA',
+                'norte' =>$dato->norte,
                 'sur' => $dato->sur,
                 'este' => $dato->este,
                 'oeste' => $dato->oeste,
+               
                 
                 ];
         });
@@ -46,8 +55,13 @@ class DatoExport implements FromCollection, ShouldAutoSize, WithHeadings,WithSty
             'Rif',
             'Clap',
             'Correo',
+            'Familias',
+            'Manzaneros',
             'Misiones',
             'Centro',
+            'UBCH',
+            'Cedula',
+            'Telefono',
             'Norte',
             'Sur',
             'Este',
@@ -56,7 +70,7 @@ class DatoExport implements FromCollection, ShouldAutoSize, WithHeadings,WithSty
     }
     public function styles(Worksheet $sheet)
     {
-        $sheet->getStyle('A1:M1')->applyFromArray([
+        $sheet->getStyle('A1:R1')->applyFromArray([
             'font' => [
                 'bold' => true,
             ],
@@ -67,7 +81,7 @@ class DatoExport implements FromCollection, ShouldAutoSize, WithHeadings,WithSty
                 ],
             ],
         ]);
-        $sheet->getStyle('A2:M'. $sheet->getHighestRow())->applyFromArray([
+        $sheet->getStyle('A2:R'. $sheet->getHighestRow())->applyFromArray([
             'font' => [
                 'bold' => false,
             ],

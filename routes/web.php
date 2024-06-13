@@ -24,8 +24,8 @@ Route::middleware([
     //Grupo de Rutas
     Route::controller(JefeController::class)->group(function(){
         Route::get('jefes', 'index')->name('jefes.index')->middleware('can:dashboard');
-        Route::get('jefes/create', 'create')->name('jefes.create')->middleware('can:modificacion');
-        Route::post('jefes', 'store')->name('jefes.store')->middleware('can:modificacion');
+        Route::get('jefes/create', 'create')->name('jefes.create')->middleware('can:dashboard');
+        Route::post('jefes', 'store')->name('jefes.store')->middleware('can:dashboard');
         Route::get('jefes/{jefe}', 'show')->name('jefes.show')->middleware('can:dashboard');
         Route::get('jefes/{jefe}/edit', 'edit')->name('jefes.edit')->middleware('can:modificacion');
         Route::put('jefes/{jefe}', 'update')->name('jefes.update')->middleware('can:modificacion');
@@ -33,8 +33,8 @@ Route::middleware([
     });
     Route::controller(IntegranteController::class)->group(function(){
         Route::get('integrantes','index')->name('integrantes.index')->middleware('can:dashboard');
-        Route::get('integrantes/create','create')->name('integrantes.create')->middleware('can:modificacion');
-        Route::post('integrantes', 'store')->name('integrantes.store')->middleware('can:modificacion');
+        Route::get('integrantes/create','create')->name('integrantes.create')->middleware('can:dashboard');
+        Route::post('integrantes', 'store')->name('integrantes.store')->middleware('can:dashboard');
         Route::get('integrantes/{integrante}','show')->name('integrantes.show')->middleware('can:dashboard');
         Route::get('integrantes/{integrante}/edit', 'edit')->name('integrantes.edit')->middleware('can:modificacion');
         Route::put('integrantes/{integrante}','update')->name('integrantes.update')->middleware('can:modificacion');

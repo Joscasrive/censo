@@ -101,7 +101,7 @@ class FamiliasLista extends Component
         $manzanas = Manzana::pluck('nombre','id')->toArray();
         $familias = Familia::where('nro_familiar','Like','%'.$this->search.'%')
         ->orWhere('codigo_gas', 'like', '%'. $this->search. '%')
-        ->paginate(10);
+        ->paginate(20);
        
         return view('livewire.familias.familia-lista',compact('familias','manzanas','bombonas'));
     }

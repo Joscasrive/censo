@@ -72,10 +72,19 @@ class User extends Authenticatable
     public function adminlte_profile_url(){
         return url('user/profile');
     }
+
+   
     public function adminlte_desc(){
        
-        $rol = $this->roles->first()->name;
-        return strtoupper($rol);
+       
+        $rol = $this->roles->first();
+        if (isset($rol)) {
+        return strtoupper($rol->name);
+       }else{
+        return "Sin Rol";
+       }
+       
+       
 
        
     }

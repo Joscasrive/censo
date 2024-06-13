@@ -3,13 +3,13 @@
 @section('title', 'SistemaCF')
 
 @section('content_header')
-@can('modificacion')
+@can('dashboard')
 <button type="button" class="btn btn-primary float-right" data-bs-toggle="modal" data-bs-target="#crearfamilia">
   Agregar Familia
 </button>
 @endcan
 
-    <h1>Lista de Jefes</h1>
+    <h1>Lista de Familias</h1>
 @stop
 
 @section('content')

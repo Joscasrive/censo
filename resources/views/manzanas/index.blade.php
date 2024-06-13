@@ -3,7 +3,7 @@
 @section('title', 'SistemaCF')
 
 @section('content_header')
-@can('modificacion')
+@can('dashboard')
     
 
 <button type="button" class="btn btn-primary float-right" data-bs-toggle="modal" data-bs-target="#crearManzana">

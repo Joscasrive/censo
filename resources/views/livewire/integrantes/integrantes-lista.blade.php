@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-header d-flex justify-start">
      
-        @can('modificacion')
+        @can('dashboard')
         <a href="{{route('integrantes.create')}}" class="btn btn-primary float-left mr-1"><i class="fa-solid fa-plus"></i></a>
         @endcan
         <a href="{{route('integrantes.export')}}" class="btn btn-success float-left mr-1"><i class="fa-solid fa-file-excel"></i></a>

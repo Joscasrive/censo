@@ -20,7 +20,7 @@ class ListBosses extends Component
 
     public function render()
     {
-        $jefes = Boss::where('ci','Like','%'.$this->search.'%')->orWhere('correo','Like','%'.$this->search.'%')->paginate(10);
+        $jefes = Boss::where('ci','Like','%'.$this->search.'%')->orWhere('correo','Like','%'.$this->search.'%')->paginate(50);
         return view('livewire.jefes.list-bosses',compact('jefes'));
     }
 }

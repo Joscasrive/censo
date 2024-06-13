@@ -1,5 +1,4 @@
 <div >
-
  <!-- Modal -->
  <div   wire:ignore.self class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog  modal-dialog-scrollable" role="document">
@@ -135,14 +134,19 @@
 </div>
  
 @if(!isset($datos))
+<div class="bg">
+  <div class="no-results">
+    <div>No hay resultados o registros encontrados.</div>
+    @can('modificacion')
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+     Agregar Datos
+     </button>
+   @endcan
+  </div>
+</div>
 
-@can('modificacion')
-<button type="button" class="btn btn-primary  float-right" data-toggle="modal" data-target="#exampleModal">
-  Agregar Datos
- </button>
-@endcan
 
-      
+
   @else
       
   
@@ -234,6 +238,29 @@
     </div>
 </div>
 @endif
+@push('cs')
+<style>
+  .bg {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100vh;
+background-color: #f0f0f0; /* change to your desired background color */
+}
+
+.no-results {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+text-align: center;
+color: #333;
+font-size: 24px;
+font-weight: bold;
+}
+</style>
+@endpush
   @push('js')
   <script>
 Livewire.on('deleteDato', id=>{

@@ -16,6 +16,15 @@
         </thead>
         <tbody>
             @foreach ($users as $user)
+            @if ($user->roles->pluck('name')->first() == 'admin' )
+            <tr>
+                <td>{{$user->id}}</td>
+                <td>{{$user->name}}</td>
+                <td>{{$user->email}}</td>
+                <td width="10px">
+            
+            </tr>
+            @else
             <tr>
                 <td>{{$user->id}}</td>
                 <td>{{$user->name}}</td>
@@ -23,6 +32,8 @@
                 <td width="10px"><a class="btn btn-primary" href="{{route('admin.edit',$user)}}"><i class="fa-solid fa-pen-to-square"></i></a></td>
             
             </tr>
+            @endif
+            
 
             @endforeach
         </tbody>

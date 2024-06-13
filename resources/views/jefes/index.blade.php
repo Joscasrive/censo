@@ -3,7 +3,7 @@
 @section('title', 'SistemaCF')
 
 @section('content_header')
-@can('modificacion')
+@can('dashboard')
     
 
 <a href="{{route('jefes.create')}}" class="btn btn-primary float-right">Agregar Jefe</a>
