@@ -9,9 +9,9 @@ use Livewire\Form;
 
 class manzanaEdit extends Form
 {
-    #[Rule('required|max:45')]
+    #[Rule('required|max:45|regex:/^[a-zA-Z0-9 ]+$/')]
     public $nombre;
-    #[Rule('required|max:250')]
+    #[Rule('required|max:250|regex:/^[a-zA-Z0-9- ]+$/')]
     public $ubicacion;
     #[Rule('required|exists:claps,id')]
     public $clap_id;

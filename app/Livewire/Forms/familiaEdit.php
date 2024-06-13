@@ -30,7 +30,7 @@ class familiaEdit extends Form
        
             $rules = [
                 'nro_familiar' => ['required','numeric', 'unique:familias,nro_familiar,'.$this->familiaId],
-                'codigo_gas' => ['max:20', 'unique:familias,codigo_gas,'.$this->familiaId],
+                'codigo_gas' => ['max:20','regex:/^[a-zA-Z0-9]+$/','unique:familias,codigo_gas,'.$this->familiaId],
                 'manzana_id' => ['required', 'max:45', 'exists:manzanas,id'],
                 'boss_id' => ['required', 'max:45', 'exists:bosses,ci'],
                 'bombona'=>['nullable','exists:bombonas,id']

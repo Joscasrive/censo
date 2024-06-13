@@ -36,11 +36,11 @@ class clapEdit extends Form
     }
     public function update(){
       $this->validate([
-         'nombre' => 'required|max:45',
-         'apellido' => 'required|max:45',
-         'telefono' => 'required|max:15',
-         'correo' => 'required|max:45|unique:claps,correo,'. $this->id,
-         'ci' => 'required|max:15|unique:claps,ci,'. $this->id,
+         'nombre' => 'required|max:45|regex:/^[a-zA-Z ]+$/',
+         'apellido' => 'required|max:45|regex:/^[a-zA-Z ]+$/',
+         'telefono' => 'required|max:15|regex:/^[0-9+]+$/',
+         'correo' => 'required|email|max:45|unique:claps,correo,'. $this->id,
+         'ci' => 'required|max:15|regex:/^[a-zA-Z0-9-]+$/|unique:claps,ci,'. $this->id,
          'responsabilidad' => 'required|in:MANZANERO,UBCH,FFM,UNAMUJER,ALIMENTACION,COMUNICADOR,PRODUCTIVO',
          'img' => 'nullable|max:1024|mimes:jpg,jpeg,png'
      ]);

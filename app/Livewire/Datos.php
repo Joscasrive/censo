@@ -12,19 +12,19 @@ class Datos extends Component
     
     public function save(){
        $this->validate([
-        'nombre'=>'required',
-        'codigo'=>'required',
-        'municipio'=>'required',
-        'parroquia'=>'required',
-        'rif'=>'required',
+        'nombre'=>'required|regex:/^[a-zA-Z ]+$/',
+        'codigo'=>'required|regex:/^[a-zA-Z0-9]+$/',
+        'municipio'=>'required|regex:/^[a-zA-Z]+$/',
+        'parroquia'=>'required|regex:/^[a-zA-Z]+$/',
+        'rif'=>'required|regex:/^[a-zA-Z0-9-]+$/',
         'clap'=>'required',
-        'correo'=>'required',
-        'misiones'=>'required',
-        'centro'=>'required',
-        'norte'=>'required',
-        'sur'=>'required',
-        'este'=>'required',
-        'oeste'=>'required',
+        'correo'=>'required|email',
+        'misiones'=>'required|regex:/^[a-zA-Z]+$/',
+        'centro'=>'required|regex:/^[a-zA-Z]+$/',
+        'norte'=>'required|regex:/^[a-zA-Z0-9 ]+$/',
+        'sur'=>'required|regex:/^[a-zA-Z0-9 ]+$/',
+        'este'=>'required|regex:/^[a-zA-Z0-9 ]+$/',
+        'oeste'=>'required|regex:/^[a-zA-Z0-9 ]+$/',
         ]);
         Dato::create($this->only(['nombre','codigo','municipio','parroquia','rif',
         'clap','correo','misiones','centro','norte','sur','este','oeste']));
@@ -37,19 +37,19 @@ class Datos extends Component
     }
     public function update(){
         $this->validate([
-            'nombre'=>'required',
-            'codigo'=>'required',
-            'municipio'=>'required',
-            'parroquia'=>'required',
-            'rif'=>'required',
+            'nombre'=>'required|regex:/^[a-zA-Z ]+$/',
+            'codigo'=>'required|regex:/^[a-zA-Z0-9]+$/',
+            'municipio'=>'required|regex:/^[a-zA-Z]+$/',
+            'parroquia'=>'required|regex:/^[a-zA-Z]+$/',
+            'rif'=>'required|regex:/^[a-zA-Z0-9-]+$/',
             'clap'=>'required',
-            'correo'=>'required',
-            'misiones'=>'required',
-            'centro'=>'required',
-            'norte'=>'required',
-            'sur'=>'required',
-            'este'=>'required',
-            'oeste'=>'required',
+            'correo'=>'required|email',
+            'misiones'=>'required|regex:/^[a-zA-Z]+$/',
+            'centro'=>'required|regex:/^[a-zA-Z]+$/',
+            'norte'=>'required|regex:/^[a-zA-Z0-9 ]+$/',
+            'sur'=>'required|regex:/^[a-zA-Z0-9 ]+$/',
+            'este'=>'required|regex:/^[a-zA-Z0-9 ]+$/',
+            'oeste'=>'required|regex:/^[a-zA-Z0-9 ]+$/',
             ]);
         $dato = Dato::find($this->id);
         $dato->update($this->only(['nombre','codigo','municipio','parroquia

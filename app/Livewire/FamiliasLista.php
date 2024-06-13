@@ -28,7 +28,7 @@ class FamiliasLista extends Component
     public function create(){
         $rules = [
             'nro_familiar' => ['required', 'unique:familias','numeric'],
-            'codigo_gas' => ['max:20', 'unique:familias'],
+            'codigo_gas' => ['max:20', 'unique:familias','regex:/^[a-zA-Z0-9]+$/'],
             'manzana_id' => ['required','max:45','exists:manzanas,id'],
             'boss_id' => ['required','max:45', 'exists:bosses,ci'],
             'bombona'=>['nullable','exists:bombonas,id'],
