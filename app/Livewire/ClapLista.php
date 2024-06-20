@@ -37,8 +37,8 @@ class ClapLista extends Component
             'nombre' => 'required|max:45|regex:/^[a-zA-Z ]+$/',
             'apellido' => 'required|max:45|regex:/^[a-zA-Z ]+$/',
             'telefono' => 'required|max:15|regex:/^[0-9+]+$/',
-            'correo' => 'required|max:45|unique:claps',
-            'ci' => 'required|email|max:15|unique:claps|regex:/^[a-zA-Z0-9-]+$/',
+            'correo' => 'required|email|max:45|unique:claps',
+            'ci' => 'required|max:15|unique:claps|regex:/^[a-zA-Z0-9-]+$/',
             'responsabilidad' => 'required|in:MANZANERO,UBCH,FFM,UNAMUJER,ALIMENTACION,COMUNICADOR,PRODUCTIVO',
             'img' => 'nullable|max:1024|mimes:jpg,jpeg,png',
         ]);

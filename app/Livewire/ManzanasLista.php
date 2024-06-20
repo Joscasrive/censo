@@ -26,7 +26,7 @@ class ManzanasLista extends Component
 
     public function create(){
         $this->validate([
-            'nombre' => 'required|max:45|regex:/^[a-zA-Z ]+$/',
+            'nombre' => 'required|max:45|regex:/^[a-zA-Z0-9 ]+$/',
             'ubicacion' => 'required|max:250|regex:/^[a-zA-Z0-9- ]+$/',
             'clap_id' => 'required|exists:claps,id',
         ]);
